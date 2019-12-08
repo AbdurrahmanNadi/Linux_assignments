@@ -4,29 +4,42 @@
 #Abdelrahman Nadi Taha                        #
 #Mechatronics                                 #
 #This script supports only files in .gz format#
+#Abdelrahman Nadi Taha Nasr                   #
+#Mechatronics				      #
+#Safe Delete V1.0.1                           #
 ###############################################
+if [[ $(echo $0 | rev | cut -d \/ -f 1 | rev) != "sdel.sh" ]]; then
+	echo unrecognized script name please use sdel.sh
+	exit 1
+fi
 
-if [ ! -d ~/TRASH ]; then
+version="1.0.1"
+if [[ $1 == "-v" ]]; then 
+	echo "Safe Delete V$version"
+	exit 0
+fi
+
+if [[ ! -d ~/TRASH ]]; then
 	mkdir ~/TRASH
 else
 	for file in $(ls -f ~/TRASH/*.tar.gz)
 	do
 		d1=$(date -r $file +%s)
 		d2=$(date +%s)
-		if [ $(( (d2 - d1) / (3600 * 24) )) -ge 2 ]; then
+		if [[ $(( (d2 - d1) / (3600 * 24) )) -ge 2 ]]; then
 			rm -v $file
 		fi
 	done
 fi
 for file in "$@"
 do
-	if [ -f "$file" ]; then
-		if [ ! $(file --mime-type -b "$file") == "application/gzip" ]; then
+	if [[ -f "$file" ]]; then
+		if [[ ! $(file --mime-type -b "$file") == "application/gzip" ]]; then
 			not_compressed_files="$not_compressed_files $file"
 		else
 			compressed_files="$compressed_files $file"
 		fi
-	elif [ -d "$file" ]; then
+	elif [[ -d "$file" ]]; then
 		dir="$dir $file"
 	else
 		echo "$file is not a regular file or directory" >&2
