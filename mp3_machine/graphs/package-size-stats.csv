@@ -1,0 +1,14 @@
+Package name,Package size,Package size in system (%)
+busybox,784699,7.4
+libzlib,75256,0.7
+unknown,158,0.0
+glibc,2372644,22.4
+openssh,4055104,38.2
+initscripts,2515,0.0
+ifupdown-scripts,2042,0.0
+skeleton-init-sysv,334,0.0
+toolchain-buildroot,162756,1.5
+linux,742187,7.0
+toolchain,230,0.0
+skeleton-init-common,16190,0.2
+libopenssl,2392929,22.6
